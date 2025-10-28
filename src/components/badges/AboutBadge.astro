@@ -1,0 +1,19 @@
+---
+interface Props {
+  icon: string; 
+  title: string; 
+  bgColor?: string; 
+}
+
+const { icon, title, bgColor = "#3b82f6" } = Astro.props;
+---
+
+<div
+  class="flex items-center gap-3 text-white font-bold py-3 px-6 rounded-r-full transition-all duration-200"
+  style={`background-color: ${bgColor};`}
+>
+  <div class="bg-white rounded-full p-2 flex items-center justify-center">
+    <img src={icon} alt={title} class="w-6 h-6 object-contain" />
+  </div>
+  <span>{title}</span>
+</div>

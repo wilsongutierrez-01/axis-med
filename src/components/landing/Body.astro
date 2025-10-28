@@ -1,0 +1,53 @@
+---
+import Header from "@/components/landing/Header.astro";
+import Hero from "@/components/landing/Hero.astro";
+import AboutUs from "@/components/landing/AboutUs.astro";
+import Services from "@/components/landing/Services.astro";
+import FAQ from "@/components/landing/FAQ.astro";
+import Map from "@/components/landing/Map.astro";
+import Footer from "@/components/landing/Footer.astro";
+import Brands from "./Brands.astro";
+---
+
+<div id="container">
+  <main>
+    <Header />
+
+    <section>
+      <Hero />
+    </section>
+
+    <section>
+      <AboutUs />
+    </section>
+
+    <section>
+      <Brands />
+    </section>
+
+    <section>
+      <Services />
+    </section>
+
+    <section>
+      <Map />
+    </section>
+
+    <section>
+      <FAQ />
+    </section>
+
+    <Footer />
+  </main>
+</div>
+
+<style>
+  #container {
+    font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+      Arial, sans-serif;
+    height: 100%;
+    padding: 1% 5%;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

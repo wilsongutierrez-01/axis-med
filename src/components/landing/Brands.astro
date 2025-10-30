@@ -1,3 +1,65 @@
-<div>
-  <h1>brands</h1>
-</div>
+---
+const imageBrands =  [
+    {
+      key: "jpicare",
+      imgSrc: "/public/img/brands/jpicare.webp",
+      alt: "imagen de logo de jpi",
+      link: "https://jpicare.com/",
+    },
+    {
+      key: "focus and fusion",
+      imgSrc: "/public/img/brands/focus.webp",
+      alt: "imagen de logo de focus and fusion",
+      link: "https://focusandfusion.com/",
+    },
+    {
+      key: "villa",
+      imgSrc: "/public/img/brands/villa.webp",
+      alt: "imagen de logo de villa",
+      link: "https://villa.com/", 
+    },
+  ];
+
+const instrumentalBrands = [
+  {
+    key: "maqsurgical",
+    imgSrc: "/public/img/brands/maqsurgical.webp",
+    alt: "imagen de logo de maqsurgical",
+    link: "https://maqsurgical.com/",
+  },
+]
+
+---
+<section class="text-center">
+  <p class="text-3xl">Nuestras Marcas</p>
+  <div class="flex justify-around mt-4">
+    <div>
+      <p class="text-3xl">Diagnostico por imagen</p>
+      <div class="mt-7">
+        {
+          imageBrands.map((brand) => (
+            <a href={brand.link} target="_blank" rel="noopener noreferrer">
+              <img
+                src={brand.imgSrc}
+                alt={brand.alt}
+              />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <div>
+      <p class="text-3xl">Instrumental médico</p>
+      <div class="mt-7">
+        {
+          instrumentalBrands.map((brand) => (
+            <img
+              src={brand.imgSrc}
+              alt={brand.alt}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

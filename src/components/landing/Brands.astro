@@ -1,24 +1,27 @@
 ---
-const imageBrands =  [
-    {
-      key: "jpicare",
-      imgSrc: "/public/img/brands/jpicare.webp",
-      alt: "imagen de logo de jpi",
-      link: "https://jpicare.com/",
-    },
-    {
-      key: "focus and fusion",
-      imgSrc: "/public/img/brands/focus.webp",
-      alt: "imagen de logo de focus and fusion",
-      link: "https://focusandfusion.com/",
-    },
-    {
-      key: "villa",
-      imgSrc: "/public/img/brands/villa.webp",
-      alt: "imagen de logo de villa",
-      link: "https://villa.com/", 
-    },
-  ];
+const imageBrands = [
+  {
+    key: "jpicare",
+    imgSrc: "/public/img/brands/jpicare.webp",
+    alt: "imagen de logo de jpi",
+    link: "https://jpicare.com/",
+    tall: false,
+  },
+  {
+    key: "villa",
+    imgSrc: "/public/img/brands/villa.webp",
+    alt: "imagen de logo de villa",
+    link: "https://villa.com/",
+    tall: true,
+  },
+  {
+    key: "focus and fusion",
+    imgSrc: "/public/img/brands/focus.webp",
+    alt: "imagen de logo de focus and fusion",
+    link: "https://focusandfusion.com/",
+    tall: false,
+  },
+];
 
 const instrumentalBrands = [
   {
@@ -27,22 +30,24 @@ const instrumentalBrands = [
     alt: "imagen de logo de maqsurgical",
     link: "https://maqsurgical.com/",
   },
-]
-
+];
 ---
+
 <section class="text-center">
   <p class="text-3xl">Nuestras Marcas</p>
   <div class="flex justify-around mt-4">
     <div>
       <p class="text-3xl">Diagnostico por imagen</p>
-      <div class="mt-7">
+      <div class="mt-7 grid grid-cols-2 gap-4">
         {
           imageBrands.map((brand) => (
-            <a href={brand.link} target="_blank" rel="noopener noreferrer">
-              <img
-                src={brand.imgSrc}
-                alt={brand.alt}
-              />
+            <a 
+              href={brand.link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class={`${brand.tall ? 'row-span-2' : ''}`}
+              >
+              <img src={brand.imgSrc} alt={brand.alt} />
             </a>
           ))
         }
@@ -53,10 +58,7 @@ const instrumentalBrands = [
       <div class="mt-7">
         {
           instrumentalBrands.map((brand) => (
-            <img
-              src={brand.imgSrc}
-              alt={brand.alt}
-            />
+            <img src={brand.imgSrc} alt={brand.alt} />
           ))
         }
       </div>

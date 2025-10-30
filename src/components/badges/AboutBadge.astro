@@ -1,19 +1,22 @@
 ---
 interface Props {
-  icon: string; 
-  title: string; 
-  bgColor?: string; 
+  icon: any;
+  title: string;
+  bgColor?: string;
+  active: boolean;
 }
 
-const { icon, title, bgColor = "#3b82f6" } = Astro.props;
+const { icon: Icon, title, bgColor = "#3b82f6", active } = Astro.props;
 ---
 
 <div
-  class="flex items-center gap-3 text-white font-bold py-3 px-6 rounded-r-full transition-all duration-200"
+  class={`flex items-center gap-3 text-white py-3 px-6 rounded-l-full rounded-br-full transition-all duration-200 ${
+    active ? "font-bold text-xl" : "font-normal"
+  }`}
   style={`background-color: ${bgColor};`}
 >
   <div class="bg-white rounded-full p-2 flex items-center justify-center">
-    <img src={icon} alt={title} class="w-6 h-6 object-contain" />
+    <Icon class="w-8 h-8 text-black" />
   </div>
   <span>{title}</span>
 </div>

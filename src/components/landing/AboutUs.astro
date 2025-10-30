@@ -1,3 +1,142 @@
-<div></div>
-  <h1>About Us</h1>
-</div>
+---
+import AboutBadge from "@/components/badges/AboutBadge.astro";
+import DescriptionBadge from "@/components/badges/DescriptionBadge.astro";
+import Experiencia from "@/assets/about/experiencia.svg";
+import Mision from "@/assets/about/mision.svg";
+import Logros from "@/assets/about/logros.svg";
+import Valores from "@/assets/about/valores.svg";
+
+const about = {
+  experiencia: {
+    key: "experiencia",
+    title: "Nuestra experiencia",
+    icon: Experiencia,
+    description: `<p>AXIS-MED nace a partir de la experiencia de más de 30 años en el campo del Diagnóstico por Imágenes y otras áreas 
+del cuidado de la Salud a través de la tecnología.</p>
+<p>Experiencia adquirida y aplicada en el sector de la Salud en El Salvador, en Centroamérica, Latinoamérica y en 
+ciertos países del mundo.</p>
+<p>Experiencia en proyectos y servicios de distintas modalidades de Diagnóstico por imágenes.</p>`,
+    bgColor: "#2583C5",
+    visible: false,
+  },
+  mision: {
+    key: "mision",
+    title: "Misión",
+    icon: Mision,
+    bgColor: "#4690BE",
+    description: `Aportar toda nuestra experiencia y conocimiento de forma confiable a todos aquellos que proveen servicios de salud por medio de la tecnología médica en condiciones accesibles y flexibles.`,
+    visible: false,
+  },
+  valores: {
+    key: "valores",
+    title: "Valores",
+    icon: Valores,
+    bgColor: "#679CB7",
+    description: `<p>Agradecimiento a Dios porque nos permite aportar valor a los sistemas de salud, a nuestros clientes y a nuestros colaboradores.</p>
+
+<p>Pasión por la Innovación Tecnológica en la Salud.</p>
+
+<p>Establecer relaciones transparentes.</p>
+
+<p>Confiabilidad en lo que hacemos y ofrecemos.</p>
+
+<p>Insistimos en ofrecer el mejor servicio a nuestros clientes.</p>`,
+
+    visible: false,
+  },
+  logros: {
+    key: "logros",
+    title: "Logros importantes",
+    icon: Logros,
+    bgColor: "#82ADC4",
+    description: `<p>Celebración de grandes victorias y momentos memorables.</p>
+
+<p>Proveedores Confiables.</p>
+
+<p>Posicionamiento en Ultrasonografía y Veterinaria.</p>
+
+<p>Cumplimiento de Regulaciones Sanitarias.</p>`,
+    visible: false,
+  },
+};
+---
+
+<section class="flex flex-col gap-12">
+  <p class="text-3xl font-semibold">¿Quiénes somos?</p>
+
+  <div class="flex gap-6">
+    <div class="w-1/4 flex flex-col gap-6">
+      {
+        Object.values(about).map((item) => (
+          <div
+            data-key={item.key}
+            class={`about-badge cursor-pointer ${item.visible ? "active" : ""}`}
+          >
+            <AboutBadge
+              active={item.visible}
+              icon={item.icon}
+              title={item.title}
+              bgColor={item.bgColor}
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="w-1/2 flex flex-col gap-6 ">
+      {
+        Object.values(about).map((item) => (
+          <div
+            data-description={item.key}
+            class={`about-description ${item.visible ? "block" : "hidden"} h-full`}
+          >
+            <DescriptionBadge
+              description={item.description}
+              colorBg={item.bgColor}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script type="module">
+  const badges = document.querySelectorAll(".about-badge");
+  const descriptions = document.querySelectorAll(".about-description");
+
+  const defaultKey = "experiencia";
+  const defaultBadge = document.querySelector(`[data-key="${defaultKey}"]`);
+  const defaultDescription = document.querySelector(
+    `[data-description="${defaultKey}"]`
+  );
+
+  if (defaultBadge && defaultDescription) {
+    defaultBadge.classList.add("active");
+    const span = defaultBadge.querySelector("span");
+    if (span) span.classList.add("font-bold", "text-xl");
+    defaultDescription.classList.remove("hidden");
+  }
+
+  badges.forEach((badge) => {
+    badge.addEventListener("click", () => {
+      const key = badge.dataset.key;
+
+      descriptions.forEach((desc) => desc.classList.add("hidden"));
+
+      const activeDesc = document.querySelector(`[data-description="${key}"]`);
+      if (activeDesc) activeDesc.classList.remove("hidden");
+
+      badges.forEach((b) => b.classList.remove("active"));
+      badge.classList.add("active");
+
+      badges.forEach((b) => {
+        const span = b.querySelector("span");
+        if (span) span.classList.remove("font-bold");
+      });
+
+      const span = badge.querySelector("span");
+      if (span) span.classList.add("font-bold", "text-xl");
+    });
+  });
+</script>

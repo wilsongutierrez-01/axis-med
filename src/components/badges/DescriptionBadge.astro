@@ -1,0 +1,21 @@
+---
+interface Props {
+  description?: string;
+  colorBg: string;
+}
+
+const { description = "", colorBg = "" } = Astro.props;
+---
+
+<div class="relative h-full p-12 rounded-xl overflow-hidden flex flex-col justify-center">
+  <div
+    class="absolute inset-0 rounded-xl items-center"
+    style={`background-color: ${colorBg}; opacity: 0.5;`}
+  >
+  </div>
+
+  <div
+    set:html={description}
+    class="relative flex flex-col gap-6 text-black text-xl z-10 align-middle"
+  />
+</div>

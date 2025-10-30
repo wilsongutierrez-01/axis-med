@@ -1,3 +1,46 @@
-<div>
-  services
-</div>
+---
+import ServiceCard from "@/components/cards/ServiceCard.astro";
+import ContactButton from "@/components/buttons/ContactButton.astro";
+const products = [
+  {
+    key: "equipo-medico",
+    title: "Diagnostico por Imagen",
+    img: "/public/img/solutions/instrumental.webp",
+    link: "/services#diagnostico-por-imagen",
+  },
+  {
+    key: "instrumental",
+    title: "Instrumental Quirúrgico",
+    img: "/public/img/solutions/instrumental.webp",
+    link: "/services#instrumental-quirurgico",
+  },
+  {
+    key: "veterinaria",
+    title: "Veterinaria",
+    img: "/public/img/solutions/veterinario.webp",
+    link: "/services#veterinaria",
+  },
+];
+---
+
+<section
+  class="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#2583C5]/20 flex flex-col gap-16 p-15"
+>
+  <p class="font-black text-3xl">Soluciones y productos</p>
+  <div class="flex gap-12 justify-between">
+    {
+      products.map((product) => (
+        <a href={product.link}>
+          <ServiceCard
+            imgSrc={product.img}
+            alt={product.title}
+            description={product.title}
+          />
+        </a>
+      ))
+    }
+  </div>
+  <div class="flex justify-center">
+    <ContactButton />
+  </div>
+</section>

@@ -1,3 +1,37 @@
-<div>
-  <h1>FAQ</h1>
-</div>
+---
+import Title from "@/components/fonts/Title.astro";
+import QuestionBadge from "@/components/badges/QuestionBadge.astro";
+
+const FAQs = [
+  {
+    question: "¿Cuál es el tiempo de entrega de los productos?",
+    answer:
+      "El tiempo de entrega varía según el producto y la ubicación del cliente. Generalmente, los pedidos se procesan y envían dentro de 3 a 5 días hábiles.",
+  },
+  {
+    question: "¿Ofrecen garantía en sus productos?",
+    answer:
+      "Sí, todos nuestros productos cuentan con una garantía mínima de un año contra defectos de fabricación.",
+  },
+  {
+    question: "¿Puedo solicitar una cotización personalizada?",
+    answer:
+      "Por supuesto, puede contactarnos a través de nuestro formulario en línea o llamarnos directamente para obtener una cotización personalizada.",
+  },
+];
+---
+
+<section
+  class="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#2583C5]/20 flex flex-col gap-16 p-15"
+>
+  <div class="flex flex-col gap-12 text-center items-center">
+    <Title title="Preguntas frecuentes" />
+    <div class="flex flex-col gap-12 text-left">
+      {
+        FAQs.map((faq) => (
+          <QuestionBadge question={faq.question} answer={faq.answer} />
+        ))
+      }
+    </div>
+  </div>
+</section>

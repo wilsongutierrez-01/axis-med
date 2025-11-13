@@ -1,0 +1,16 @@
+---
+interface Props {
+  platform: string;
+  url: string;
+  icono: any;
+}
+const {platform, url, icono: Icon } = Astro.props;
+---
+
+<button>
+  <a href={url} target="_blank" rel="noopener noreferrer" class="flex gap-5 items-center">
+    <Icon class="w-10 h-10" />
+    <p class="text-lg">{platform}</p>
+  </a>
+</button>
+

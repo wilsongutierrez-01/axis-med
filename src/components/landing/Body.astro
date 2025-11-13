@@ -9,13 +9,15 @@ import Footer from "@/components/landing/Footer.astro";
 import Brands from "./Brands.astro";
 ---
 
-<main class="flex flex-col gap-12 pl-25 pr-25 pt-5">
+<main class="flex flex-col gap-5 pl-25 pr-25 pt-5">
   <Header />
-  <Hero />
-  <AboutUs />
-  <Brands />
-  <Services />
-  <Map />
-  <FAQ />
+  <div class="flex flex-col gap-75">
+    <Hero />
+    <AboutUs />
+    <Brands />
+    <Services />
+    <Map />
+    <FAQ />
+  </div>
   <Footer />
 </main>

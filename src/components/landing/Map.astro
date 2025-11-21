@@ -1,14 +1,6 @@
 ---
-import ContactButton from "@/components/buttons/ContactButton.astro";
 import Title from "@/components/fonts/Title.astro";
-
-const banner = {
-  title: "¿Por qué Somos Tu Mejor Opción?",
-  imgSrc: "/img//maps/medico.webp",
-  alt: "Mujer en un laboratorio",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Excepteur sint occaecat cupidatat non proident. Sunt in culpa qui officia deserunt mollit anim id est laborum. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
-};
+import Banner from "@/components/landing/Banner.astro";
 ---
 
 <section class="text-center">
@@ -19,16 +11,5 @@ const banner = {
     <p>Mapa</p>
   </div>
 
-  <div
-    class="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#2583C5]/60"
-  >
-    <div class=" flex gap-16 justify-around items-center p-12">
-      <img src={banner.imgSrc} alt={banner.alt} class="w-[564px]" />
-      <div class="flex flex-col gap-16 items-center text-left ">
-        <p class="text-4xl font-medium text-white">{banner.title}</p>
-        <p class="font-medium text-lg text-white">{banner.description}</p>
-        <ContactButton />
-      </div>
-    </div>
-  </div>
+  <Banner />
 </section>

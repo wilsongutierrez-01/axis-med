@@ -5,21 +5,21 @@ const imageBrands = [
     key: "jpicare",
     imgSrc: "/img/brands/jpicare.webp",
     alt: "imagen de logo de jpi",
-    link: "https://jpicare.com/",
+    link: "https://www.jpihealthcare.com/",
     tall: false,
   },
   {
     key: "villa",
     imgSrc: "/img/brands/villa.webp",
     alt: "imagen de logo de villa",
-    link: "https://villa.com/",
+    link: "https://www.villasm.com/es/",
     tall: true,
   },
   {
     key: "focus and fusion",
     imgSrc: "/img/brands/focus.webp",
     alt: "imagen de logo de focus and fusion",
-    link: "https://focusandfusion.com/",
+    link: "https://es.focus-fusion.com/",
     tall: false,
   },
 ];
@@ -36,7 +36,7 @@ const instrumentalBrands = [
     imgSrc: "/img/brands/reda.webp",
     alt: "imagen de logo de medline",
     link: "https://medline.com/",
-  }
+  },
 ];
 ---
 
@@ -48,12 +48,12 @@ const instrumentalBrands = [
       <div class="mt-7 grid grid-cols-2 gap-4">
         {
           imageBrands.map((brand) => (
-            <a 
-              href={brand.link} 
-              target="_blank" 
+            <a
+              href={brand.link}
+              target="_blank"
               rel="noopener noreferrer"
-              class={`${brand.tall ? 'row-span-2' : ''}`}
-              >
+              class={`${brand.tall ? "row-span-2" : ""}`}
+            >
               <img src={brand.imgSrc} alt={brand.alt} />
             </a>
           ))
@@ -66,7 +66,7 @@ const instrumentalBrands = [
         {
           instrumentalBrands.map((brand) => (
             <a href={brand.link} target="_blank" rel="noopener noreferrer">
-              <img src={brand.imgSrc} alt={brand.alt} class="w-52"/>
+              <img src={brand.imgSrc} alt={brand.alt} class="w-52" />
             </a>
           ))
         }

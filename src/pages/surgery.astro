@@ -1,9 +1,14 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Title from "@/components/fonts/Title.astro";
+import Hero from "@/components/landing/Hero.astro";
 ---
 <Layout>
-  <div class="flex flex-col items-center text-left gap-10 mb-50">
+  <div class="flex flex-col gap-12">
+    <Hero 
+      imageSrc="/img/surgery/instruments.webp" 
+      altText="Instrumentos quirúrgicos" 
+      title="AXIS-MED: Somos tu mejor aliado para el éxito quirúrgico, confiable y avanzado"/>
     <Title title="Cirugía"/>
   </div>
 </Layout>

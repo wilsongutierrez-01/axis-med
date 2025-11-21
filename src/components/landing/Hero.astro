@@ -1,9 +1,19 @@
+---
+interface Props {
+  imageSrc?: string;
+  altText?: string;
+  title?: string;
+}
+
+const { imageSrc, altText, title } = Astro.props;
+---
+
 <section
   class="relative w-screen left-1/2 -translate-x-1/2 h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden"
 >
   <img
-    src="/img/hero/Hero1.webp"
-    alt="Sala de operaciones moderna"
+    src={imageSrc}
+    alt={altText}
     class="relative inset-0 w-full h-full object-cover"
   />
 
@@ -12,7 +22,7 @@
   >
     <div class="max-w-xl bg-[#253D5A]/70 p-12 rounded-r-2xl">
       <h1 class="text-white text-2xl md:text-4xl font-bold leading-snug">
-        AXIS-MED: Su Aliado de Confianza en Tecnología Médica de Vanguardia
+        {title}
       </h1>
     </div>
   </div>

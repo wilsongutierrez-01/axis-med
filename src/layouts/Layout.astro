@@ -1,29 +1,46 @@
 ---
-import Header from "@/components/landing/Header.astro"
-import Footer from "@/components/landing/Footer.astro"
-import '../../global.css'
+import Header from "@/components/landing/Header.astro";
+import Footer from "@/components/landing/Footer.astro";
+import { SEO } from "astro-seo";
+import "../../global.css";
 ---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body class="flex flex-col gap-5 pl-25 pr-25 pt-5">
-		<Header />
-			<slot />
-		<Footer />
-	</body>
+<html lang="es">
+  <head>
+    <SEO
+      title="AXIS-MED | Diagnóstico por Imágenes y Tecnología Médica"
+      description="Más de 30 años de experiencia en salud: ultrasonografía, radiografía, cirugía y veterinaria en El Salvador y Latinoamérica."
+      openGraph={{
+        basic: {
+          title: "AXIS-MED | Diagnóstico por Imágenes",
+          type: "website",
+          image: "/images/axis-med-preview.png",
+        },
+        optional: {
+          siteName: "AXIS-MED",
+        },
+      }}
+      extend={{
+        link: [
+          { rel: "icon", type: "image/svg+xml", href: "/logoIcon.svg" },
+        ]
+      }},
+      charset="UTF-8"
+    />
+  </head>
+  <body class="flex flex-col gap-5 pl-25 pr-25 pt-5">
+    <Header />
+    <slot />
+    <Footer />
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

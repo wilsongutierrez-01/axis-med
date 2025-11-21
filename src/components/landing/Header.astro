@@ -1,14 +1,44 @@
 ---
 import AxisLogo from "@/assets/logo.svg";
----
 
-<header class="flex justify-between items-center w-full ">
+const Solutions = [
+  { name: "Cirugia", href: "/" },
+  { name: "Imagenes Diagnosticas", href: "/about" },
+  { name: "Dental", href: "/services" },
+  { name: "Software", href: "/contact" },
+  { name: "Accesorios", href: "/support" },
+  { name: "Consumibles", href: "/support" },
+  { name: "Veterinaria", href: "/support" },
+  { name: "Ingenieria", href: "/support" },
+  { name: "Servicios de Salud", href: "/support" },
+];
+---
+<header class="flex justify-between items-center w-full relative">
   <a href="/"><AxisLogo class="w-50 h-auto" /></a>
-  <div class="flex justify-between gap-6">
+
+  <div class="flex justify-between gap-6 relative">
     <nav>Inicio</nav>
     <nav>¿Quiénes somos?</nav>
-    <nav>Servicios</nav>
+
+    <div class="relative group">
+      <nav class="cursor-pointer">Soluciones</nav>
+
+      <div
+        class="absolute left-0 hidden group-hover:block bg-white shadow-lg rounded-md p-3 w-48 z-50"
+      >
+        {Solutions.map((item) => (
+          <a
+            href={item.href}
+            class="block px-3 py-2 hover:bg-gray-200 rounded-md"
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+    </div>
+
     <nav>Contacto</nav>
     <nav>Soporte técnico</nav>
   </div>
 </header>
+

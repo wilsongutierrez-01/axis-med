@@ -54,7 +54,13 @@ const instrumentalBrands = [
               rel="noopener noreferrer"
               class={`${brand.tall ? "row-span-2" : ""}`}
             >
-              <img src={brand.imgSrc} alt={brand.alt} />
+              {brand.key !== "villa" ? (
+                <div class="flex items-center justify-center h-full">
+                  <img src={brand.imgSrc} alt={brand.alt} class="w-52"/>
+                </div>
+              ) : (
+              <img src={brand.imgSrc} alt={brand.alt} class="w-32"/>
+              )}
             </a>
           ))
         }

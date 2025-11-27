@@ -22,6 +22,20 @@ const imageBrands = [
     link: "https://es.focus-fusion.com/",
     tall: false,
   },
+  {
+    key: "genoray",
+    imgSrc: "/img/brands/genoray.webp",
+    alt: "imagen de logo de genoray",
+    link: "https://www.genoray.com/?Lang=EN",
+    tall: false,
+  },
+  {
+    key: "umg",
+    imgSrc: "/img/brands/umg.webp",
+    alt: "imagen de logo de umg",
+    link: "https://delmedical.com/general-radiography/",
+    tall: false,
+  },
 ];
 
 const instrumentalBrands = [
@@ -56,10 +70,10 @@ const instrumentalBrands = [
             >
               {brand.key !== "villa" ? (
                 <div class="flex items-center justify-center h-full">
-                  <img src={brand.imgSrc} alt={brand.alt} class="w-52"/>
+                  <img src={brand.imgSrc} alt={brand.alt} class="w-52" />
                 </div>
               ) : (
-              <img src={brand.imgSrc} alt={brand.alt} class="w-32"/>
+                <img src={brand.imgSrc} alt={brand.alt} class="w-32" />
               )}
             </a>
           ))

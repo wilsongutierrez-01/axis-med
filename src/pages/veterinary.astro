@@ -1,9 +1,55 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/landing/Hero.astro";
 import Title from "@/components/fonts/Title.astro";
+import { imageBrands } from "@/constans/Brands";
+import Banner from "@/components/landing/Banner.astro";
+import FAQ from "@/components/landing/FAQ.astro";
 ---
+
 <Layout>
-  <div class="flex flex-col items-center text-left gap-10 mb-50">
-    <Title title="Veterinaria"/>
+  <div class="flex flex-col gap-12">
+    <Hero
+      imageSrc="/img/vet/vet.webp"
+      altText="Veterinaria atendiendo a un perro"
+      title="AXIS-MED: Tu socio confiable en soluciones veterinarias de calidad"
+    />
+
+    <section class="text-center">
+      <Title title="Nuestras Marcas" />
+      <div class="flex justify-around mt-4">
+        <div>
+          <div class="mt-7 grid grid-cols-2 gap-4">
+            {
+              imageBrands.map((brand) => (
+                <a
+                  href={brand.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class={`${brand.tall ? "row-span-2" : ""}`}
+                >
+                  {brand.key !== "villa" ? (
+                    <div class="flex items-center justify-center h-full">
+                      <img src={brand.imgSrc} alt={brand.alt} class="w-52" />
+                    </div>
+                  ) : (
+                    <img src={brand.imgSrc} alt={brand.alt} class="w-32" />
+                  )}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Banner
+      title="Somos tu aliado en el cuidado veterinario"
+      imgSrc="/img/vet/vetBanner.webp"
+      alt="Mujer con un perro en las manos"
+      description="En AXIS-MED, entendemos la importancia de brindar atención veterinaria de calidad. Por eso, ofrecemos una amplia gama de productos y soluciones diseñadas específicamente para satisfacer las necesidades de los profesionales veterinarios y sus pacientes. Desde equipos médicos avanzados hasta suministros especializados, estamos comprometidos en apoyar el bienestar animal y el éxito de tu práctica veterinaria."
+    />
+
+    <FAQ />
   </div>
 </Layout>

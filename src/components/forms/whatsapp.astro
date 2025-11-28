@@ -1,0 +1,59 @@
+---
+import { WhatssapContact } from "@/constans/WhatssapContact";
+import { Solutions } from "@/constans/Solutions";
+
+let name = "";
+let message = "";
+let service = "";
+---
+
+<div class="w-full max-w-md mx-auto bg-white p-6 rounded shadow">
+  <h2 class="text-xl font-bold mb-4">Escríbenos por WhatsApp</h2>
+  <p class="text-sm font-light mb-4">
+    Estamos aquí para ayudarte. Completa el formulario y nos pondremos en
+    contacto contigo lo antes posible.
+  </p>
+
+  <form
+    onsubmit={`event.preventDefault();
+      const name = document.querySelector('#name').value;
+      const service = document.querySelector('#service').value;
+      const msg = document.querySelector('#msg').value;
+
+      const text = encodeURIComponent(
+        'Hola, mi nombre es ' + name +
+        '. Me gustaría recibir más información sobre el área de ' + service + 
+        '. ' + (msg ? 'Mi consulta adicional es: ' + msg : '') +
+        '. Gracias por su atención.'
+      );
+
+      window.open('https://wa.me/${WhatssapContact}?text=' + text, '_blank');
+    `}
+  >
+    <label class="block mb-2 font-medium">Nombre</label>
+    <input
+      id="name"
+      type="text"
+      required
+      class="w-full border p-2 rounded mb-4"
+    />
+    <label class="block mb-2 font-medium">Servicio de Interés</label>
+    <select id="service" required class="w-full border p-2 rounded mb-4">
+      <option value="" disabled selected>Selecciona un servicio</option>
+      {Solutions.map((item) => <option value={item.name}>{item.name}</option>)}
+    </select>
+
+    <label class="block mb-2 font-medium">Mensaje (opcional)</label>
+    <textarea
+      id="msg"
+      class="w-full border p-2 rounded mb-4"
+      placeholder="Escribe tu consulta aquí..."></textarea>
+
+    <button
+      type="submit"
+      class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 cursor-pointer"
+    >
+      Enviar a WhatsApp
+    </button>
+  </form>
+</div>

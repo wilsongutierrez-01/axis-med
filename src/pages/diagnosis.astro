@@ -1,9 +1,55 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Title from "@/components/fonts/Title.astro";
+import Hero from "@/components/landing/Hero.astro";
+import { imageBrands } from "@/constans/Brands";
+import Banner from "@/components/landing/Banner.astro";
+import FAQ from "@/components/landing/FAQ.astro";
 ---
+
 <Layout>
-  <div class="flex flex-col items-center text-left gap-10 mb-50">
-    <Title title="Diagnóstico por Imágenes"/>
+  <div class="flex flex-col gap-12">
+    <Hero
+      imageSrc="/img/diagnosis/diagnosis.webp"
+      altText="Instrumentos de diagnóstico por imagen"
+      title="AXIS-MED: Somos tu mejor aliado para el obtener el mejor equipo de diagnóstico por imagen"
+    />
+
+    <section class="text-center">
+      <Title title="Nuestras Marcas" />
+      <div class="flex justify-around mt-4">
+        <div>
+          <div class="mt-7 grid grid-cols-2 gap-4">
+            {
+              imageBrands.map((brand) => (
+                <a
+                  href={brand.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class={`${brand.tall ? "row-span-2" : ""}`}
+                >
+                  {brand.key !== "villa" ? (
+                    <div class="flex items-center justify-center h-full">
+                      <img src={brand.imgSrc} alt={brand.alt} class="w-52" />
+                    </div>
+                  ) : (
+                    <img src={brand.imgSrc} alt={brand.alt} class="w-32" />
+                  )}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Banner
+      title="Equipos de Diagnóstico por Imagen de alta calidad "
+      imgSrc="/img/diagnosis/diagnosisDoctor.webp"
+      alt="Sala de operaciones moderna"
+      description="En AXIS-MED, ofrecemos los mejores equipos de diagnóstico por imagen que combinan tecnología avanzada con un compromiso inquebrantable con la precisión y la fiabilidad. Nuestro catálogo incluye una amplia gama de soluciones, desde equipos de rayos X hasta sistemas de ultrasonido, diseñados para satisfacer las necesidades de los profesionales de la salud y mejorar la atención al paciente.  "
+    />
   </div>
+
+  <FAQ />
 </Layout>

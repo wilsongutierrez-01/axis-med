@@ -1,42 +1,8 @@
 ---
 import SocialMediaButton from "@/components/buttons/SocialMediaButton.astro";
 import Logo from "@/assets/logo.svg";
-import FacebookIcon from "@/assets/social/facebook.svg";
-import GmailIcon from "@/assets/social/gmail.svg";
-import InstagramIcon from "@/assets/social/instagram.svg";
-import PhoneIcon from "@/assets/social/phone.svg";
+import { links, socialMedia } from "@/constans/Footer";
 import ContactButton from "@/components/buttons/ContactButton.astro";
-
-const links = [
-  { href: "/#about", text: "Sobre nosotros" },
-  { href: "/#brands", text: "Nuestras Marcas" },
-  { href: "/#services", text: "Servicios" },
-  { href: "/#map", text: "Encuéntranos" },
-  { href: "/#faq", text: "Preguntas Frecuentes" },
-];
-
-const socialMedia = [
-  {
-    platform: "Facebook",
-    url: "https://www.facebook.com/profile.php?id=61572627796132",
-    icono: FacebookIcon,
-  },
-  {
-    platform: "Instagram",
-    url: "https://www.instagram.com/axismed.sv/",
-    icono: InstagramIcon,
-  },
-  {
-    platform: "axismed.info@gmail.com",
-    url: "mailto:axismed.info@gmail.com",
-    icono: GmailIcon,
-  },
-  {
-    platform: "+503 77422509",
-    url: "/",
-    icono: PhoneIcon,
-  },
-];
 ---
 
 <footer class="w-full bg-[#2583C5]/50">

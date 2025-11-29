@@ -5,6 +5,13 @@ import { SEO } from "astro-seo";
 import "../../global.css";
 ---
 
+<!-- ---
+import Header from "@/components/landing/Header.astro";
+import Footer from "@/components/landing/Footer.astro";
+import { SEO } from "astro-seo";
+import "../../global.css";
+---
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -38,6 +45,59 @@ import "../../global.css";
   <body class="flex flex-col gap-5 pl-25 pr-25 pt-5">
     <Header />
     <slot />
+    <Footer />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style> -->
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Charset y viewport explícitos -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- SEO -->
+    <SEO
+      title="AXIS-MED | Diagnóstico por Imágenes y Tecnología Médica"
+      description="Más de 30 años de experiencia en salud: ultrasonografía, radiografía, cirugía y veterinaria en El Salvador y Latinoamérica."
+      openGraph={{
+        basic: {
+          title: "AXIS-MED | Diagnóstico por Imágenes",
+          type: "website",
+          image: "/preview.webp",
+          url: "https://www.axismedins.com/",
+        },
+        optional: {
+          siteName: "AXIS-MED",
+        },
+      }}
+      extend={{
+        link: [{ rel: "icon", type: "image/svg+xml", href: "/logoIcon.svg" }],
+        meta: [
+          // puedes agregar más meta tags aquí si lo necesitas
+        ],
+      }}
+    />
+  </head>
+
+  <body class="flex flex-col min-h-screen gap-6 ">
+    <!-- Header -->
+    <Header />
+
+    <!-- Main: se recomienda envolver el contenido en un main.contenedor -->
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+
+    <!-- Footer -->
     <Footer />
   </body>
 </html>

@@ -1,46 +1,35 @@
 ---
 import ServiceCard from "@/components/cards/ServiceCard.astro";
 import ContactButton from "@/components/buttons/ContactButton.astro";
-const products = [
-  {
-    key: "equipo-medico",
-    title: "Diagnostico por Imagen",
-    img: "/img/solutions/diagnostico.webp",
-    link: "/diagnosis",
-  },
-  {
-    key: "instrumental",
-    title: "Instrumental Quirúrgico",
-    img: "/img/solutions/instrumental.webp",
-    link: "/surgery",
-  },
-  {
-    key: "veterinaria",
-    title: "Veterinaria",
-    img: "/img/solutions/veterinario.webp",
-    link: "/veterinary",
-  },
-];
+import { products } from "@/constans/Products";
 ---
 
-<section
-  class="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#2583C5]/20 flex flex-col gap-16 p-15"
->
-  <p class="font-black text-3xl">Soluciones y productos</p>
-  <div class="flex gap-12 justify-between">
-    {
-      products.map((product) => (
-        <a href={product.link}>
-          <ServiceCard
-            imgSrc={product.img}
-            alt={product.title}
-            description={product.title}
-          />
-        </a>
-      ))
-    }
-  </div>
-  <div class="flex justify-center">
-    <ContactButton />
+<section class="w-full bg-[#2583C5]/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <!-- Título -->
+    <p class="font-black text-2xl sm:text-3xl lg:text-4xl mb-8">Soluciones y productos</p>
+
+    <!-- Grid responsive: 1 / 2 / 3 columnas -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 ">
+      {
+        products.map((product) => (
+          <a href={product.link} class="block group">
+            <div class="h-full flex flex-col items-center">
+              <!-- Si tu ServiceCard ya maneja imagen y texto, solo lo envolvemos -->
+              <ServiceCard
+                imgSrc={product.img}
+                alt={product.title}
+                description={product.title}
+              />
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Botón de contacto -->
+    <div class="flex justify-center mt-8">
+      <ContactButton />
+    </div>
   </div>
 </section>

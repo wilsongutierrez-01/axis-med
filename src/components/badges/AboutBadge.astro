@@ -10,13 +10,21 @@ const { icon: Icon, title, bgColor = "#3b82f6", active } = Astro.props;
 ---
 
 <div
-  class={`flex items-center gap-3 text-white py-3 px-6 rounded-l-full rounded-br-full transition-all duration-200 ${
-    active ? "font-bold text-xl" : "font-normal"
-  }`}
+  class={`flex items-center gap-2 sm:gap-3 
+          text-white 
+          py-2 px-4 sm:py-3 sm:px-6 
+          rounded-l-full rounded-br-full 
+          transition-all duration-200
+          ${active ? "font-bold text-base sm:text-xl" : "font-normal text-sm sm:text-base"}`}
   style={`background-color: ${bgColor};`}
 >
-  <div class="bg-white rounded-full p-2 flex items-center justify-center">
-    <Icon class="w-8 h-8 text-black" />
+  <div
+    class="bg-white rounded-full p-1.5 sm:p-2 flex items-center justify-center"
+  >
+    <Icon class="w-5 h-5 sm:w-8 sm:h-8 text-black" />
   </div>
-  <span>{title}</span>
+
+  <span class="whitespace-nowrap">
+    {title}
+  </span>
 </div>

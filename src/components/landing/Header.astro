@@ -1,4 +1,4 @@
----
+<!-- ---
 import AxisLogo from "@/assets/logo.svg";
 import { Solutions } from "@/constans/Solutions";
 ---
@@ -29,4 +29,129 @@ import { Solutions } from "@/constans/Solutions";
     <nav><a href="/contact">Contacto</a></nav>
   </div>
 </header>
+ -->
 
+ 
+
+ ---
+import AxisLogo from "@/assets/logo.svg";
+import { Solutions } from "@/constans/Solutions";
+---
+
+<header class="w-full bg-transparent px-4 md:px-8 lg:px-12">
+  <div class="max-w-7xl mx-auto flex items-center justify-between py-4">
+    <!-- Logo -->
+    <a href="/" class="flex items-center">
+      <AxisLogo class="w-28 md:w-36 lg:w-44 h-auto" />
+      <span class="sr-only">AXIS-MED - Inicio</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href="/" class="hover:underline">Inicio</a>
+      <a href="/#about" class="hover:underline">¿Quiénes somos?</a>
+
+      <!-- Submenu Soluciones (desktop: hover) -->
+      <div class="relative group">
+        <button
+          type="button"
+          class="flex items-center hover:underline cursor-pointer"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Soluciones
+          <!-- chevron -->
+          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div
+          class="absolute left-0  hidden group-hover:block bg-white shadow-lg rounded-md p-2 w-56 z-50"
+        >
+          {Solutions.map((item) => (
+            <a href={item.href} class="block px-3 py-2 text-sm hover:bg-gray-100 rounded-md">
+              {item.name}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <a href="/contact" class="hover:underline">Contacto</a>
+    </nav>
+
+    <!-- Mobile controls -->
+    <div class="md:hidden flex items-center gap-3">
+      <a href="/contact" class="p-2 rounded-md bg-green-600 text-white text-sm">Contacto</a>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-button"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        class="p-2 rounded-md border hover:bg-gray-100"
+        type="button"
+      >
+        <span class="sr-only">Abrir menú</span>
+        <!-- hamburger -->
+        <svg id="hamburger" class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <!-- close (hidden by default) -->
+        <svg id="close" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu (hidden by default) -->
+  <div id="mobile-menu" class="md:hidden hidden border-t">
+    <div class="px-4 py-4 space-y-2">
+      <a href="/" class="block px-2 py-2 rounded hover:bg-gray-50">Inicio</a>
+      <a href="/#about" class="block px-2 py-2 rounded hover:bg-gray-50">¿Quiénes somos?</a>
+
+      <!-- Mobile accordion for Soluciones -->
+      <details class="group">
+        <summary class="flex items-center justify-between cursor-pointer list-none px-2 py-2 rounded hover:bg-gray-50">
+          <span>Soluciones</span>
+          <svg class="w-4 h-4 transform group-open:rotate-180" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+
+        <div class="mt-2 space-y-1 pl-4">
+          {Solutions.map((item) => (
+            <a href={item.href} class="block px-2 py-2 rounded hover:bg-gray-50">
+              {item.name}
+            </a>
+          ))}
+        </div>
+      </details>
+
+      <a href="/contact" class="block px-2 py-2 rounded hover:bg-gray-50">Contacto</a>
+    </div>
+  </div>
+
+  <script type="module" is:inline>
+    // Toggle mobile menu (simple, no frameworks)
+    const btn = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger');
+    const close = document.getElementById('close');
+
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        const opened = menu.classList.toggle('hidden') === false;
+        btn.setAttribute('aria-expanded', String(opened));
+        if (opened) {
+          hamburger.classList.add('hidden');
+          close.classList.remove('hidden');
+        } else {
+          hamburger.classList.remove('hidden');
+          close.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</header>

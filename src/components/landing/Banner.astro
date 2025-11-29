@@ -2,30 +2,47 @@
 import ContactButton from "@/components/buttons/ContactButton.astro";
 
 interface Props {
-  title?: string,
-  imgSrc?: string,
-  imgClass?: string,
-  alt?: string,
-  description?: string,
-};
+  title?: string;
+  imgSrc?: string;
+  imgClass?: string;
+  alt?: string;
+  description?: string;
+}
 
-const { 
-  title = "¿Por qué Somos Tu Mejor Opción?", 
-  imgSrc = "/img//maps/medico.webp", 
-  imgClass = "h-[400px] w-full object-object rounded-xl",
-  alt = "Mujer en un laboratorio", 
-  description= "En el dinámico y crucial campo del cuidado de la salud, elegir al socio confiable es la diferencia para la excelencia. AXIS-MED no es solo un proveedor; somos un aliado estratégico forjado por décadas de dedicación y visión global.AXIS-MED es tu mejor opción porque te ofrece la confianza que solo la experiencia comprobada y conocimiento que provienen de una trayectoria de más de 30 años en el campo de la salud te pueden brindar, además del conocimiento aplicado en escenarios de salud a nivel mundial y la flexibilidad para que los mejores productos y servicios sean un motor para proveer la mejor experiencia a tus pacientes." 
-  }= Astro.props;
+const {
+  title = "¿Por qué Somos Tu Mejor Opción?",
+  imgSrc = "/img//maps/medico.webp",
+  imgClass = "h-[400px] w-full object-cover rounded-xl",
+  alt = "Mujer en un laboratorio",
+  description = "En el dinámico y crucial campo del cuidado de la salud, elegir al socio confiable es la diferencia para la excelencia. AXIS-MED no es solo un proveedor; somos un aliado estratégico forjado por décadas de dedicación y visión global.AXIS-MED es tu mejor opción porque te ofrece la confianza que solo la experiencia comprobada y conocimiento que provienen de una trayectoria de más de 30 años en el campo de la salud te pueden brindar, además del conocimiento aplicado en escenarios de salud a nivel mundial y la flexibilidad para que los mejores productos y servicios sean un motor para proveer la mejor experiencia a tus pacientes.",
+} = Astro.props;
 ---
-<div
-    class="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#2583C5]/60"
+
+<div class="w-full bg-[#2583C5]/60">
+  <!-- MOBILE: flex-col | DESKTOP: flex-row -->
+  <div
+    class="flex flex-col md:flex-row gap-16 justify-around items-center p-6 sm:p-10 md:p-12"
   >
-    <div class=" flex gap-16 justify-around items-center p-12">
-      <img src={imgSrc} alt={alt} class={imgClass} />
-      <div class="flex flex-col gap-16 items-center text-left ">
-        <p class="text-4xl font-medium text-white">{title}</p>
-        <p class="font-medium text-lg text-white">{description}</p>
+    <!-- Imagen -->
+    <img src={imgSrc} alt={alt} class={imgClass} />
+
+    <!-- Contenido -->
+    <div class="flex flex-col gap-10 sm:gap-12 md:gap-16 text-left max-w-xl">
+      <p
+        class="text-2xl sm:text-3xl md:text-4xl font-medium text-white text-center md:text-left"
+      >
+        {title}
+      </p>
+
+      <p
+        class="font-medium text-base sm:text-lg text-white text-center md:text-left"
+      >
+        {description}
+      </p>
+
+      <div class="flex justify-center md:justify-start">
         <ContactButton />
       </div>
     </div>
   </div>
+</div>

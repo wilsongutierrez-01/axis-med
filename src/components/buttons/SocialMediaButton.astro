@@ -4,13 +4,22 @@ interface Props {
   url: string;
   icono: any;
 }
-const {platform, url, icono: Icon } = Astro.props;
+const { platform, url, icono: Icon } = Astro.props;
 ---
 
 <button>
-  <a href={url} target="_blank" rel="noopener noreferrer" class="flex gap-5 items-center">
-    <Icon class="w-10 h-10" />
-    <p class="text-lg">{platform}</p>
+  <a
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex gap-3 sm:gap-5 items-center"
+  >
+    <!-- Ícono más pequeño en móvil -->
+    <Icon class="w-6 h-6 sm:w-10 sm:h-10" />
+
+    <!-- Texto más pequeño en móvil -->
+    <p class="text-sm sm:text-lg">
+      {platform}
+    </p>
   </a>
 </button>
-

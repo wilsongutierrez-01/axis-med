@@ -5,11 +5,15 @@ import { FAQs } from "@/constans/Faqs";
 ---
 
 <section
-  class="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#2583C5]/20 flex flex-col gap-16 p-15"
+  class="relative w-full bg-[#2583C5]/20 flex flex-col gap-10
+    p-6 sm:p-10 md:p-15"
 >
-  <div class="flex flex-col gap-12 text-center items-center">
+  <div class="flex flex-col gap-10 text-center items-center">
+    <!-- Título: tamaño reducido en mobile -->
     <Title title="Preguntas frecuentes" />
-    <div class="flex flex-col gap-12 text-left">
+
+    <!-- Contenedor de preguntas -->
+    <div class="flex flex-col gap-6 sm:gap-10 text-left w-full ">
       {
         FAQs.map((faq) => (
           <QuestionBadge question={faq.question} answer={faq.answer} />

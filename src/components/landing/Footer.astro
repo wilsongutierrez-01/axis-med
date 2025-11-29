@@ -5,7 +5,6 @@ import FacebookIcon from "@/assets/social/facebook.svg";
 import GmailIcon from "@/assets/social/gmail.svg";
 import InstagramIcon from "@/assets/social/instagram.svg";
 import PhoneIcon from "@/assets/social/phone.svg";
-import TiktokIcon from "@/assets/social/tiktok.svg";
 import ContactButton from "@/components/buttons/ContactButton.astro";
 
 const links = [
@@ -27,11 +26,6 @@ const socialMedia = [
     url: "https://www.instagram.com/axismed.sv/",
     icono: InstagramIcon,
   },
-  // {
-  //   platform: "TikTok",
-  //   url: "https://tiktok.com",
-  //   icono: TiktokIcon,
-  // },
   {
     platform: "axismed.info@gmail.com",
     url: "mailto:axismed.info@gmail.com",
@@ -45,45 +39,69 @@ const socialMedia = [
 ];
 ---
 
-<footer
-  class="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-[#2583C5]/50 flex flex-col gap-16 p-15"
->
-  <div class="flex justify-around">
-    <div class="flex flex-col gap-10">
-      <a href="/"><Logo class="w-100 h-auto" /></a>
-      <p>Carretera del Puerto de La Libertad, km10, N°9</p>
-      <p>Antiguo Cuscatlán, La Libertad, El Salvador</p>
-      <p class="font-bold">Horario de atención:</p>
-      <p>Lunes a Viernes: 8:00 AM - 5:30 PM</p>
-    </div>
+<footer class="w-full bg-[#2583C5]/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <!-- Grid: 1 columna en móvil, 3 columnas en md+ -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 items-start">
+      <!-- Columna 1: Logo + dirección -->
+      <div class="flex flex-col gap-4">
+        <a href="/" aria-label="Ir al inicio" class="inline-flex items-center">
+          <Logo class="w-36 sm:w-44 md:w-48 h-auto" />
+        </a>
 
-    <div class="flex flex-col gap-10">
-      <nav>
-        <ul class="flex flex-col gap-12">
+        <div class="text-sm text-slate-900/90 leading-relaxed">
+          <p>Carretera del Puerto de La Libertad, km10, N°9</p>
+          <p>Antiguo Cuscatlán, La Libertad, El Salvador</p>
+        </div>
+
+        <div class="mt-2 text-sm">
+          <p class="font-bold">Horario de atención:</p>
+          <p class="text-slate-900/90">Lunes a Viernes: 8:00 AM - 5:30 PM</p>
+        </div>
+      </div>
+
+      <!-- Columna 2: Navegación + ContactButton -->
+      <div class="flex flex-col gap-4">
+        <nav aria-label="Enlaces del pie">
+          <ul class="flex flex-col gap-3 text-sm">
+            {
+              links.map((link) => (
+                <li>
+                  <a href={link.href} class="hover:underline">
+                    {link.text}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+
+        <!-- Mantener el ContactButton: centrado en móvil, alineado a la izquierda en md+ -->
+        <div class="mt-4 md:mt-auto">
+          <div class="flex justify-center md:justify-start">
+            <ContactButton />
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna 3: Redes sociales + copyright -->
+      <div class="flex flex-col gap-4">
+        <p class="font-bold">Redes Sociales</p>
+
+        <!-- En móvil: fila horizontal; en md+: columna vertical -->
+        <div class="flex flex-col gap-3 md:gap-4 items-start">
           {
-            links.map((link) => (
-              <li>
-                <a href={link.href}>{link.text}</a>
-              </li>
+            socialMedia.map(({ platform, url, icono }) => (
+              /* Si SocialMediaButton acepta class, se puede ajustar; si no, el componente sigue sin problema */
+              <SocialMediaButton platform={platform} url={url} icono={icono} />
             ))
           }
-        </ul>
-      </nav>
-      <ContactButton />
-    </div>
+        </div>
 
-    <div class="flex flex-col gap-10">
-      <p>Redes Sociales</p>
-      <div class="flex flex-col gap-10">
-        {
-          socialMedia.map(({ platform, url, icono }) => (
-            <SocialMediaButton platform={platform} url={url} icono={icono} />
-          ))
-        }
+        <div class="mt-4 text-xs text-slate-900/80">
+          &copy; {new Date().getFullYear()} Axis-Med. Todos los derechos reservados.
+        </div>
       </div>
-      <p class="text-[10px] font-bold">
-        &copy; {new Date().getFullYear()} Axis-Med. Todos los derechos reservados.
-      </p>
     </div>
   </div>
 </footer>

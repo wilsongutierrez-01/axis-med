@@ -7,7 +7,30 @@ interface Props {
 const { imgSrc, alt, description }: Props = Astro.props;
 ---
 
-<div class="bg-[#2583C5] flex flex-col justify-center items-center p-4 w-[300px] rounded-2xl gap-3">
-  <img src={imgSrc} alt={alt} class=""/>
-  <p class="font-black text-white text-xl ">{description}</p>
+<div
+  class="bg-[#2583C5] flex flex-col items-center
+    p-4 rounded-2xl gap-2
+    sm:p-8
+    w-[250px] h-[200px] /* ALTURA FIJA EN MÓVIL */
+    sm:w-[300px] sm:h-auto /* ALTURA LIBRE EN TABLET/ESCRITORIO */"
+>
+  <!-- Imagen optimizada para altura fija -->
+  <div class="w-full h-full sm:h-[150px] overflow-hidden rounded-xl">
+    <img
+      src={imgSrc}
+      alt={alt}
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Texto responsivo, ajustado a la altura -->
+  <p
+    class="font-black text-white
+      text-sm sm:text-lg md:text-xl
+      text-center leading-tight
+      px-2"
+  >
+    {description}
+  </p>
 </div>

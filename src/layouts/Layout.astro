@@ -3,110 +3,119 @@ import Header from "@/components/landing/Header.astro";
 import Footer from "@/components/landing/Footer.astro";
 import { SEO } from "astro-seo";
 import "../../global.css";
----
 
-<!-- ---
-import Header from "@/components/landing/Header.astro";
-import Footer from "@/components/landing/Footer.astro";
-import { SEO } from "astro-seo";
-import "../../global.css";
+const siteUrl = "https://www.axismedins.com";
+const siteName = "AXIS-MED";
+const title = "AXIS-MED | Diagnóstico por Imágenes y Tecnología Médica";
+const description = "Más de 30 años de experiencia en salud: ultrasonografía, radiografía, cirugía y veterinaria en El Salvador y Latinoamérica.";
+const image = `${siteUrl}/preview.webp`; // Asegúrate que preview.webp exista y sea accesible públicamente
+const contactEmail = "axismed.info@gmail.com";
+const phone = "+503 77422509";
+const logo = `${siteUrl}/logoIcon.svg`;
+const canonical = siteUrl + (Astro.request ? new URL(Astro.request.url, siteUrl).pathname : "/");
 ---
-
 <!doctype html>
 <html lang="es">
   <head>
-    <SEO
-      title="AXIS-MED | Diagnóstico por Imágenes y Tecnología Médica"
-      description="Más de 30 años de experiencia en salud: ultrasonografía, radiografía, cirugía y veterinaria en El Salvador y Latinoamérica."
-      openGraph={{
-        basic: {
-          title: "AXIS-MED | Diagnóstico por Imágenes",
-          type: "website",
-          image: "/preview.webp",
-          url: "https://www.axismedins.com/", 
-        },
-        optional: {
-          siteName: "AXIS-MED",
-        },
-      }}
-      extend={{
-        link: [{ rel: "icon", type: "image/svg+xml", href: "/logoIcon.svg" }],
-        meta: [
-          {
-            name: "viewport",
-            content: "width=device-width, initial-scale=1.0",
-          },
-        ],
-      }}
-      ,
-      charset="UTF-8",
-    />
-  </head>
-  <body class="flex flex-col gap-5 pl-25 pr-25 pt-5">
-    <Header />
-    <slot />
-    <Footer />
-  </body>
-</html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style> -->
-<!doctype html>
-<html lang="es">
-  <head>
-    <!-- Charset y viewport explícitos -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- SEO -->
+    <!-- Basic SEO via astro-seo (sigue incluyendo metadatos estándares) -->
     <SEO
-      title="AXIS-MED | Diagnóstico por Imágenes y Tecnología Médica"
-      description="Más de 30 años de experiencia en salud: ultrasonografía, radiografía, cirugía y veterinaria en El Salvador y Latinoamérica."
+      title={title}
+      description={description}
       openGraph={{
         basic: {
-          title: "AXIS-MED | Diagnóstico por Imágenes",
+          title,
           type: "website",
-          image: "/preview.webp",
-          url: "https://www.axismedins.com/",
+          image,
+          url: siteUrl,
         },
         optional: {
-          siteName: "AXIS-MED",
+          siteName,
         },
       }}
       extend={{
-        link: [{ rel: "icon", type: "image/svg+xml", href: "/logoIcon.svg" }],
+        // Links: favicon, apple-touch, manifest
+        link: [
+          { rel: "icon", type: "image/svg+xml", href: "/logoIcon.svg" },
+          { rel: "alternate icon", href: "/favicon.ico" },
+          { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+          { rel: "manifest", href: "/site.webmanifest" },
+          { rel: "canonical", href: canonical }
+        ],
+        // Meta: OpenGraph + Twitter + canonical + robots + theme-color
         meta: [
-          // puedes agregar más meta tags aquí si lo necesitas
+          { name: "description", content: description },
+          { name: "robots", content: "index, follow" },
+          { name: "theme-color", content: "#2583C5" },
+
+          // Open Graph – redundancia para asegurar compat.
+          { property: "og:title", content: title },
+          { property: "og:description", content: description },
+          { property: "og:image", content: image },
+          { property: "og:image:width", content: "1200" },
+          { property: "og:image:height", content: "630" },
+          { property: "og:type", content: "website" },
+          { property: "og:url", content: siteUrl },
+
+          // Twitter card
+          { name: "twitter:card", content: "summary_large_image" },
+          { name: "twitter:title", content: title },
+          { name: "twitter:description", content: description },
+          { name: "twitter:image", content: image },
         ],
       }}
     />
+
+    <!-- JSON-LD: Organization + Website (mejora la visibilidad en search) -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": siteName,
+        "url": siteUrl,
+        "logo": logo,
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": phone,
+            "contactType": "customer service",
+            "email": contactEmail,
+            "areaServed": "SV"
+          }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/axismed.sv",
+          "https://www.instagram.com/axismed.sv"
+        ]
+      })}
+    </script>
+
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": siteUrl,
+        "name": siteName,
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": `${siteUrl}/search?q={search_term_string}`,
+          "query-input": "required name=search_term_string"
+        }
+      })}
+    </script>
   </head>
 
-  <body class="flex flex-col min-h-screen gap-6 ">
-    <!-- Header -->
+  <body class="flex flex-col min-h-screen gap-6">
     <Header />
-
-    <!-- Main: se recomienda envolver el contenido en un main.contenedor -->
     <main class="flex-1 w-full">
       <slot />
     </main>
-
-    <!-- Footer -->
     <Footer />
   </body>
 </html>
 
 <style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
+  html, body { margin: 0; width: 100%; height: 100%; }
 </style>

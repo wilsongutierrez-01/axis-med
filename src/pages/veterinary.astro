@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/landing/Hero.astro";
 import Title from "@/components/fonts/Title.astro";
-import { imageBrands } from "@/constans/Brands";
+import { veterinaryBrands } from "@/constans/Brands";
 import Banner from "@/components/landing/Banner.astro";
 import FAQ from "@/components/landing/FAQ.astro";
 ---
@@ -21,7 +21,7 @@ import FAQ from "@/components/landing/FAQ.astro";
         <div>
           <div class="mt-7 grid grid-cols-2 gap-4">
             {
-              imageBrands.map((brand) => (
+              veterinaryBrands.map((brand) => (
                 <a
                   href={brand.link}
                   target="_blank"

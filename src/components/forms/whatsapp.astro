@@ -5,6 +5,7 @@ import { Solutions } from "@/constans/Solutions";
 let name = "";
 let message = "";
 let service = "";
+let email = "";
 ---
 
 <div class="w-full px-4 sm:px-6 lg:px-0">
@@ -22,11 +23,13 @@ let service = "";
         const name = document.querySelector('#name').value;
         const service = document.querySelector('#service').value;
         const msg = document.querySelector('#msg').value;
+        const email = document.querySelector('#email').value;
 
         const text = encodeURIComponent(
           'Hola, mi nombre es ' + name +
           '. Me gustaría recibir más información sobre el área de ' + service +
-          '. ' + (msg ? 'Mi consulta adicional es: ' + msg : '') +
+          (email ? '. Mi correo electrónico es: ' + email : '') +
+          (msg ? '. Mi consulta adicional es: ' + msg : '') +
           '. Gracias por su atención.'
         );
 
@@ -35,31 +38,51 @@ let service = "";
       class="space-y-4"
       aria-label="Formulario de contacto por WhatsApp"
     >
+      <!-- Nombre -->
       <div>
-        <label for="name" class="block text-sm font-medium text-gray-700 mb-1"
-          >Nombre</label
-        >
+        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+          Nombre
+        </label>
         <input
           id="name"
           name="name"
           type="text"
           required
-          class="block w-full rounded-md border-gray-300 shadow-sm px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
+          class="block w-full rounded-md border-gray-300 shadow-sm px-3 py-2 text-sm placeholder-gray-400
+                 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
           placeholder="Tu nombre"
         />
       </div>
 
+      <!-- Correo electrónico (opcional) -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+          Correo electrónico (opcional)
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          class="block w-full rounded-md border-gray-300 shadow-sm px-3 py-2 text-sm placeholder-gray-400
+                 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
+          placeholder="ejemplo@correo.com"
+        />
+      </div>
+
+      <!-- Servicio -->
       <div>
         <label
           for="service"
           class="block text-sm font-medium text-gray-700 mb-1"
-          >Servicio de Interés</label
         >
+          Servicio de Interés
+        </label>
         <select
           id="service"
           name="service"
           required
-          class="block w-full rounded-md border-gray-300 shadow-sm px-3 py-2 text-sm bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
+          class="block w-full rounded-md border-gray-300 shadow-sm px-3 py-2 text-sm bg-white appearance-none
+                 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
           aria-label="Selecciona un servicio"
         >
           <option value="" disabled selected hidden
@@ -73,22 +96,27 @@ let service = "";
         </select>
       </div>
 
+      <!-- Mensaje -->
       <div>
-        <label for="msg" class="block text-sm font-medium text-gray-700 mb-1"
-          >Mensaje (opcional)</label
-        >
+        <label for="msg" class="block text-sm font-medium text-gray-700 mb-1">
+          Mensaje (opcional)
+        </label>
         <textarea
           id="msg"
           name="message"
           rows="4"
-          class="block w-full rounded-md border-gray-300 shadow-sm px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
+          class="block w-full rounded-md border-gray-300 shadow-sm px-3 py-2 text-sm placeholder-gray-400
+                 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
           placeholder="Escribe tu consulta aquí..."></textarea>
       </div>
 
+      <!-- Botón -->
       <div>
         <button
           type="submit"
-          class="w-full inline-flex items-center justify-center gap-2 rounded-md bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 transition-shadow focus:outline-none focus:ring-2 focus:ring-green-400"
+          class="w-full inline-flex items-center justify-center gap-2 rounded-md bg-green-600 hover:bg-green-700
+                 text-white font-medium py-2 px-4 transition-shadow focus:outline-none focus:ring-2
+                 focus:ring-green-400"
         >
           Enviar a WhatsApp
         </button>

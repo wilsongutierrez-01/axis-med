@@ -75,42 +75,56 @@ const canonical = siteUrl + (Astro.request ? new URL(Astro.request.url, siteUrl)
     />
 
     <!-- JSON-LD: Organization + Website (mejora la visibilidad en search) -->
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": siteName,
-        "url": siteUrl,
-        "logo": logo,
-        "contactPoint": [
-          {
-            "@type": "ContactPoint",
-            "telephone": phone,
-            "contactType": "customer service",
-            "email": contactEmail,
-            "areaServed": "SV"
-          }
-        ],
-        "sameAs": [
-          "https://www.facebook.com/axismed.sv",
-          "https://www.instagram.com/axismed.sv"
-        ]
-      })}
-    </script>
-
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": siteUrl,
-        "name": siteName,
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": `${siteUrl}/search?q={search_term_string}`,
-          "query-input": "required name=search_term_string"
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.axismedins.com/#organization",
+      "name": "AXIS-MED",
+      "url": "https://www.axismedins.com/",
+      "logo": "https://www.axismedins.com/logoIcon.svg",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+50377422509",
+          "contactType": "customer service",
+          "email": "axismed.info@gmail.com",
+          "areaServed": "SV"
         }
-      })}
-    </script>
+      ],
+      "sameAs": [
+        "https://www.facebook.com/axismed.sv",
+        "https://www.instagram.com/axismed.sv"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.axismedins.com/#website",
+      "url": "https://www.axismedins.com/",
+      "name": "AXIS-MED",
+      "publisher": {
+        "@id": "https://www.axismedins.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.axismedins.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://www.axismedins.com/#logo-image",
+      "inLanguage": "es",
+      "url": "https://www.axismedins.com/preview.webp",
+      "width": 1200,
+      "height": 630
+    }
+  ]
+})}
+</script>
+
   </head>
 
   <body class="flex flex-col min-h-screen gap-6">

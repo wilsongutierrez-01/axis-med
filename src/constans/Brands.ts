@@ -50,3 +50,26 @@ export const imageBrands = [
     tall: false,
   },
 ];
+
+export const veterinaryBrands = [
+    {
+    key: "jpicare",
+    imgSrc: "/img/brands/jpicare.webp",
+    alt: "imagen de logo de jpi",
+    link: "https://www.jpihealthcare.com/",
+    tall: false,
+  },
+  {
+    key: "focus and fusion",
+    imgSrc: "/img/brands/focus.webp",
+    alt: "imagen de logo de focus and fusion",
+    link: "https://es.focus-fusion.com/",
+    tall: false,
+  },
+  {
+    key: "maqsurgical",
+    imgSrc: "/img/brands/maqsurgical.webp",
+    alt: "imagen de logo de maqsurgical",
+    link: "https://maqsurgical.com/",
+  },
+]

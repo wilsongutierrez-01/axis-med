@@ -1,0 +1,108 @@
+---
+// src/components/AstroSeo.astro
+import { SEO } from "astro-seo";
+import { getPageSeo, siteMeta } from "@/lib/seo";
+
+const { slug = "/", override = {} } = Astro.props as {
+  slug?: string;
+  override?: Record<string, any>;
+};
+
+// Normalizar slug: quitar slash final y asegurar "/" para la home
+const normalizeSlug = (s: string) => {
+  try {
+    if (!s) return "/";
+    const urlPath = String(s).split("?")[0].split("#")[0];
+    if (urlPath === "/") return "/";
+    return urlPath.replace(/\/+$/, ""); // "/diagnosis/" -> "/diagnosis"
+  } catch {
+    return "/";
+  }
+};
+
+const normalizedSlug = normalizeSlug(slug);
+const meta = getPageSeo(normalizedSlug, override);
+
+// No mutar `meta`. Calcula pagePath localmente y asegúrate que empiece con "/"
+const pagePath = meta.urlPath?.startsWith("/") ? meta.urlPath : `/${meta.urlPath ?? ""}`;
+const absoluteUrl = `${siteMeta.siteUrl.replace(/\/$/, "")}${pagePath}`;
+const image = meta.image ?? `${siteMeta.siteUrl}/preview.webp`;
+
+// Construye locale en formato "es_ES" si `meta.language` es "es"
+const locale = meta.language ? `${meta.language}_${meta.language.toUpperCase()}` : "es_ES";
+---
+<SEO
+  title={meta.title}
+  description={meta.description}
+  openGraph={{
+    basic: {
+      title: meta.title,
+      type: "website",
+      image,
+      url: absoluteUrl,
+    },
+    optional: {
+      siteName: siteMeta.siteName,
+    },
+  }}
+  extend={{
+    link: [
+      { rel: "canonical", href: absoluteUrl }
+    ],
+    meta: [
+      { name: "description", content: meta.description },
+      { property: "og:locale", content: locale }
+    ]
+  }}
+/>
+
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteMeta.siteUrl}/#organization`,
+      "name": siteMeta.siteName,
+      "url": siteMeta.siteUrl,
+      "logo": siteMeta.logo,
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": siteMeta.phone,
+          "contactType": "customer service",
+          "email": siteMeta.contactEmail,
+          "areaServed": "SV"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteMeta.siteUrl}/#website`,
+      "url": siteMeta.siteUrl,
+      "name": siteMeta.siteName,
+      "publisher": { "@id": `${siteMeta.siteUrl}/#organization` },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${siteMeta.siteUrl}/search?q={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${absoluteUrl}#webpage`,
+      "url": absoluteUrl,
+      "name": meta.title,
+      "description": meta.description,
+      "inLanguage": meta.language ?? "es"
+    },
+    {
+      "@type": "ImageObject",
+      "@id": `${absoluteUrl}#primaryimage`,
+      "url": image,
+      "width": meta.imageWidth ?? 1200,
+      "height": meta.imageHeight ?? 630
+    }
+  ]
+})}
+</script>

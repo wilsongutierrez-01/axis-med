@@ -1,18 +1,8 @@
 ---
 import Header from "@/components/landing/Header.astro";
 import Footer from "@/components/landing/Footer.astro";
-import { SEO } from "astro-seo";
+import AstroSeo from "@/components/AstroSeo.astro";
 import "../../global.css";
-
-const siteUrl = "https://www.axismedins.com";
-const siteName = "AXIS-MED";
-const title = "AXIS-MED | Diagnóstico por Imágenes y Tecnología Médica";
-const description = "Más de 30 años de experiencia en salud: ultrasonografía, radiografía, cirugía y veterinaria en El Salvador y Latinoamérica.";
-const image = `${siteUrl}/preview.webp`; // Asegúrate que preview.webp exista y sea accesible públicamente
-const contactEmail = "axismed.info@gmail.com";
-const phone = "+503 77422509";
-const logo = `${siteUrl}/logoIcon.svg`;
-const canonical = siteUrl + (Astro.request ? new URL(Astro.request.url, siteUrl).pathname : "/");
 ---
 <!doctype html>
 <html lang="es">
@@ -27,103 +17,10 @@ const canonical = siteUrl + (Astro.request ? new URL(Astro.request.url, siteUrl)
      crossorigin=""></script>
 
     <!-- Basic SEO via astro-seo (sigue incluyendo metadatos estándares) -->
-    <SEO
-      title={title}
-      description={description}
-      openGraph={{
-        basic: {
-          title,
-          type: "website",
-          image,
-          url: siteUrl,
-        },
-        optional: {
-          siteName,
-        },
-      }}
-      extend={{
-        // Links: favicon, apple-touch, manifest
-        link: [
-          { rel: "icon", type: "image/svg+xml", href: "/logoIcon.svg" },
-          { rel: "alternate icon", href: "/favicon.ico" },
-          { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
-          { rel: "manifest", href: "/site.webmanifest" },
-          { rel: "canonical", href: canonical }
-        ],
-        // Meta: OpenGraph + Twitter + canonical + robots + theme-color
-        meta: [
-          { name: "description", content: description },
-          { name: "robots", content: "index, follow" },
-          { name: "theme-color", content: "#2583C5" },
-
-          // Open Graph – redundancia para asegurar compat.
-          { property: "og:title", content: title },
-          { property: "og:description", content: description },
-          { property: "og:image", content: image },
-          { property: "og:image:width", content: "1200" },
-          { property: "og:image:height", content: "630" },
-          { property: "og:type", content: "website" },
-          { property: "og:url", content: siteUrl },
-
-          // Twitter card
-          { name: "twitter:card", content: "summary_large_image" },
-          { name: "twitter:title", content: title },
-          { name: "twitter:description", content: description },
-          { name: "twitter:image", content: image },
-        ],
-      }}
-    />
+    <AstroSeo slug={Astro.url.pathname} />
 
     <!-- JSON-LD: Organization + Website (mejora la visibilidad en search) -->
-<script type="application/ld+json">
-{JSON.stringify({
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://www.axismedins.com/#organization",
-      "name": "AXIS-MED",
-      "url": "https://www.axismedins.com/",
-      "logo": "https://www.axismedins.com/logoIcon.svg",
-      "contactPoint": [
-        {
-          "@type": "ContactPoint",
-          "telephone": "+50377422509",
-          "contactType": "customer service",
-          "email": "axismed.info@gmail.com",
-          "areaServed": "SV"
-        }
-      ],
-      "sameAs": [
-        "https://www.facebook.com/axismed.sv",
-        "https://www.instagram.com/axismed.sv"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.axismedins.com/#website",
-      "url": "https://www.axismedins.com/",
-      "name": "AXIS-MED",
-      "publisher": {
-        "@id": "https://www.axismedins.com/#organization"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.axismedins.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://www.axismedins.com/#logo-image",
-      "inLanguage": "es",
-      "url": "https://www.axismedins.com/preview.webp",
-      "width": 1200,
-      "height": 630
-    }
-  ]
-})}
-</script>
+
 
   </head>
 

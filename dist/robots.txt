@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.axismedins.com/sitemap.xml
+Host: https://www.axismedins.com
